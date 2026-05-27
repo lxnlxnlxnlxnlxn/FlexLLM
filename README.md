@@ -72,11 +72,11 @@ bash ./baseline/vllm.sh
 
 FlexLLM outperforms all baselines on overall throughput, it achieves up to 2.7×, 2.9×, 2.1×, 2.8× times of performance improvement compared with vLLM, Deepspeed-MII, LMDeploy, TensorRT respectively.
 
-![throughput](.\data\e2e\throughput.png)
+![throughput](./data/e2e/throughput.png)
 
 FlexLLM outperforms all baselines on the average value of per-request latency, it achieves up to 2.7×, 3.5×, 2.1×, 2.8× times of performance improvement compared with vLLM, Deepspeed-MII, LMDeploy, TensorRT respectively.
 
-![jct](.\data\e2e\jct.png)
+![jct](./data/e2e/jct.png)
 
 ##### 2、Parameter Selection
 
@@ -84,10 +84,10 @@ FlexLLM leverages a simulator to predict the execution process of inference task
 
 As observed from the figures, the simulator achieves accurate performance predictions for all conditions and enables optimal parameter combinations selection efficiently which is enclosed with a black rectangular box.
 
-![args](.\data\args\args.png)
+![args](./data/args/args.png)
 
 ##### 3、Preemption Overhead
 
 When GPU memory is sufficient, FlexLLM regenerates the KV Cache of previously evicted user requests. Since the KV Cache of these requests has been backed up in CPU memory before its eviction, FlexLLM searches the split points within the sequences. The first half is recomputed via one prefill stage, while the second half is swapped in from CPU memory. Since the latency of re-computation and swapping process can be obtained offline, we can find the optimal split point for each sequence for fully parallelization, minimizing the total overhead as a result.
 
-<img src=".\data\preempt\preempt.png" alt="preempt" style="zoom: 15%;" />
+<img src="./data/preempt/preempt.png" alt="preempt" style="zoom: 10%;" />
